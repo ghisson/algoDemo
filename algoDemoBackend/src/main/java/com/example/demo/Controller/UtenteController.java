@@ -19,6 +19,7 @@ import com.example.demo.Service.ServiceUtente;
 @Controller
 @RequestMapping(path="/utente")
 public class UtenteController {
+	
 	@Autowired 
 	private ServiceUtente serviceUtente;	
 	

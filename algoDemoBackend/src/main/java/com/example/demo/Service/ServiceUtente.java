@@ -14,6 +14,7 @@ import com.example.demo.Repository.UtenteRepository;
 
 @Service
 public class ServiceUtente {
+	
 	@Autowired
 	private UtenteRepository utenteRepository;
 	
@@ -29,7 +30,7 @@ public class ServiceUtente {
 	 }
 	 
 	 public Utente addUser(Utente user) {
-		 Optional<Utente> ut=utenteRepository.findByCodiceFiscale(user.getCodFiscale());
+		 Optional<Utente> ut=utenteRepository.findByCodFiscale(user.getCodFiscale());
 		  if(ut.isPresent()) {
 			  return null;
 		  }

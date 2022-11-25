@@ -2,11 +2,23 @@ package com.example.demo.Model;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+@Entity
 public class Utente {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id_utente")
 	private long idUtente;
 	private String name;
 	private String surname;
+	@Column(name="birth_date")
 	private Date birthDate;
+	@Column(name="cod_fiscale")
 	private String codFiscale;
 	private String email;
 	private String password;
@@ -79,9 +91,12 @@ public class Utente {
 	public void setPassword(String password) {
 		this.password=password;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Utente [idUtente="+idUtente+", nome="+name+", cognome="+surname+", dataDiNascita="+birthDate+", codiceFiscale="+codFiscale+"]";
+		return "Utente [idUtente=" + idUtente + ", name=" + name + ", surname=" + surname + ", birthDate=" + birthDate
+				+ ", codFiscale=" + codFiscale + ", email=" + email + ", password=" + password + "]";
 	}
+	
+	
 }
