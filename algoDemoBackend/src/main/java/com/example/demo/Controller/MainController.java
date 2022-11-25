@@ -15,7 +15,7 @@ import com.example.demo.Util.ClientAlgo;
 
 @Controller
 public class MainController {
-	//ciao
+	
     private static String token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
 	@CrossOrigin(origins="*")
