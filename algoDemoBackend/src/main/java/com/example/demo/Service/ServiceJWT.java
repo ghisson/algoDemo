@@ -27,7 +27,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class ServiceJWT {
 	
 	private Algorithm algorithm;
-    private String secret = "atlantica";
     private KeyPairGenerator keyGenerator;
     private KeyPair kp;
     private RSAPublicKey publicKey;
@@ -48,14 +47,12 @@ public class ServiceJWT {
     
     
     public String create(String psw) {  	
-       	ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-
         return JWT.create()
                 .withClaim("token", psw)
                 .sign(algorithm);
     }
     
-    
+   
     public String verify(String token) {
         JWTVerifier verifier = JWT.require(algorithm)
                 .build();
@@ -65,20 +62,6 @@ public class ServiceJWT {
                 .stream()
                 .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().as(Object.class)));
         String tk=(String) ret.get("token");
-        
-        ObjectMapper objectMapper = new ObjectMapper();
-        /*try {
-        	
-			//tk=objectMapper.readValue(ret.get("token"));
-			
-		} catch (JsonMappingException e1) {
-			System.out.println("primo catch");
-			return null;
-		} catch (JsonProcessingException e1) {
-			System.out.println("secondo catch");
-
-			return null;
-		}	*/
         
         return tk;   
     }
