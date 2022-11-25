@@ -16,13 +16,17 @@ import com.example.demo.Repository.UtenteRepository;
 public class ServiceUtente {
 	
 	@Autowired
+	private ServiceJWT serviceJWT;
+	
+	@Autowired
 	private UtenteRepository utenteRepository;
 	
 	 public Utente checkLogin(UtenteLogin user) {
 		 Optional<Utente> ut=utenteRepository.findByEmail(user.getEmail());
 		 if (ut.isPresent()) {
 		    	Utente utn = ut.get();
-		    	if(utn.getPassword().equals(user.getPassword())) {
+		    	String psw=serviceJWT.verify(utn.getPassword());
+		    	if(psw.equals(user.getPassword())) {
 		    		return utn;
 		    	}
 		 }

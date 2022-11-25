@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.Model.Errore;
 import com.example.demo.Model.Utente;
 import com.example.demo.Model.UtenteLogin;
+import com.example.demo.Service.ServiceJWT;
 import com.example.demo.Service.ServiceUtente;
 
 @Controller
 @RequestMapping(path="/utente")
 public class UtenteController {
+	
+	@Autowired
+	private ServiceJWT serviceJWT;
 	
 	@Autowired 
 	private ServiceUtente serviceUtente;	
@@ -40,6 +44,9 @@ public class UtenteController {
 	@PostMapping("/addUtente")
 	public ResponseEntity<Object> postBody(@RequestBody Utente utente) {
 		Errore errore=new Errore();
+		String psw=utente.getPassword();
+		psw=serviceJWT.create(psw);
+		utente.setPassword(psw);
 		Utente utn=serviceUtente.addUser(utente);
 		if(utn!=null) {
 			return new ResponseEntity<Object>(utn, HttpStatus.OK);
