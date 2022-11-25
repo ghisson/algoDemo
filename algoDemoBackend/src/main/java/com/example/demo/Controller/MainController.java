@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.algorand.algosdk.account.Account;
 import com.algorand.algosdk.v2.client.common.AlgodClient;
+import com.example.demo.Service.ServiceJWT;
 import com.example.demo.Service.ServiceTransaction;
 import com.example.demo.Util.ClientAlgo;
 
@@ -21,6 +22,9 @@ public class MainController {
 	
 	@Autowired
 	private ServiceTransaction serviceTransaction;
+	
+	@Autowired
+	private ServiceJWT serviceJWT;
 	
     private static String token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
@@ -47,6 +51,20 @@ public class MainController {
 	public ResponseEntity<Object> sendTransaction(@PathVariable String note) {
 		String idTransaction=serviceTransaction.sendTransaction(note);
 		return new ResponseEntity<Object>(idTransaction, HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins="*")
+	@GetMapping("/cripta/{note}")
+	public ResponseEntity<Object> cripta(@PathVariable String note) {
+		String criptata=serviceJWT.create(note);
+		return new ResponseEntity<Object>(criptata, HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins="*")
+	@GetMapping("/decripta/{note}")
+	public ResponseEntity<Object> decripta(@PathVariable String note) {
+		String decriptata=serviceJWT.verify(note);
+		return new ResponseEntity<Object>(decriptata, HttpStatus.OK);
 	}
 	
 	
