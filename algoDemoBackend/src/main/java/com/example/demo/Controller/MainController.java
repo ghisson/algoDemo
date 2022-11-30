@@ -15,6 +15,7 @@ import com.algorand.algosdk.v2.client.common.AlgodClient;
 import com.example.demo.Service.ServiceJWT;
 import com.example.demo.Service.ServiceTransaction;
 import com.example.demo.Util.ClientAlgo;
+import com.example.demo.Util.HashCreator;
 
 
 @Controller
@@ -65,6 +66,13 @@ public class MainController {
 	@GetMapping("/decripta/{note}")
 	public ResponseEntity<Object> decripta(@PathVariable String note) {
 		String decriptata=serviceJWT.verify(note);
+		return new ResponseEntity<Object>(decriptata, HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins="*")
+	@GetMapping("/hash/{note}")
+	public ResponseEntity<Object> hash(@PathVariable String note) throws NoSuchAlgorithmException {
+		String decriptata=HashCreator.createSHAHash(note);
 		return new ResponseEntity<Object>(decriptata, HttpStatus.OK);
 	}
 	

@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,27 +8,38 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.DTO.ValutazioneDTO;
 import com.example.demo.Model.Errore;
 import com.example.demo.Model.Utente;
 import com.example.demo.Model.UtenteLogin;
+import com.example.demo.Model.Valutazione;
 import com.example.demo.Service.ServiceJWT;
+import com.example.demo.Service.ServiceTransaction;
 import com.example.demo.Service.ServiceUtente;
+import com.example.demo.Service.ServiceValutazione;
 
 @Controller
 @RequestMapping(path="/utente")
+@CrossOrigin(origins = "*")
 public class UtenteController {
 	
 	@Autowired
 	private ServiceJWT serviceJWT;
 	
-	@Autowired 
-	private ServiceUtente serviceUtente;	
+	@Autowired
+	private ServiceTransaction serviceTransaction;
 	
-	@CrossOrigin(origins = "*")
+	@Autowired 
+	private ServiceUtente serviceUtente;
+	
+	@Autowired
+	private ServiceValutazione serviceValutazione;
+	
 	@PostMapping("/login")
 	public ResponseEntity<Object> postLogin(@RequestBody UtenteLogin user) {
 		Errore errore=new Errore();
@@ -40,7 +52,6 @@ public class UtenteController {
 	    return new ResponseEntity<Object>(errore, HttpStatus.BAD_REQUEST);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping("/addUtente")
 	public ResponseEntity<Object> postBody(@RequestBody Utente utente) {
 		Errore errore=new Errore();
@@ -53,6 +64,13 @@ public class UtenteController {
 		}
 		errore.setError("utente già esistente");
 		return new ResponseEntity<Object>(errore, HttpStatus.BAD_REQUEST);
+	}
+	
+	@PostMapping("/createValutazione/{idUtente}")
+	public ResponseEntity<Object> postBody(@RequestBody ValutazioneDTO valutazioneDTO,@PathVariable long idUtente) throws NoSuchAlgorithmException {
+		Valutazione valutazione=serviceValutazione.addValutazione(valutazioneDTO, idUtente);
+		serviceTransaction.sendTransaction(valutazione.getHash());
+		return new ResponseEntity<Object>(valutazione, HttpStatus.OK);
 	}
 	 
 }

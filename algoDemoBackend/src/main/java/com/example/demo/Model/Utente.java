@@ -1,12 +1,16 @@
 package com.example.demo.Model;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 @Entity
 public class Utente {
 	
@@ -97,6 +101,21 @@ public class Utente {
 		return "Utente [idUtente=" + idUtente + ", name=" + name + ", surname=" + surname + ", birthDate=" + birthDate
 				+ ", codFiscale=" + codFiscale + ", email=" + email + ", password=" + password + "]";
 	}
+	
+	@OneToMany( mappedBy = "utente" )
+    @JsonIgnoreProperties("utente")
+	
+	private List<Valutazione> valutazioni;
+
+	public List<Valutazione> getValutazioni() {
+		return valutazioni;
+	}
+
+	public void setValutazioni(List<Valutazione> valutazioni) {
+		this.valutazioni = valutazioni;
+	}
+		
+	
 	
 	
 }
