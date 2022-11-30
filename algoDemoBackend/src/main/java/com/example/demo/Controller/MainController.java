@@ -50,6 +50,7 @@ public class MainController {
 	@GetMapping("/sendTransaction/{note}")
 	public ResponseEntity<Object> sendTransaction(@PathVariable String note) {
 		String idTransaction=serviceTransaction.sendTransaction(note);
+		System.out.println("idTX: "+idTransaction);
 		return new ResponseEntity<Object>(idTransaction, HttpStatus.OK);
 	}
 	
