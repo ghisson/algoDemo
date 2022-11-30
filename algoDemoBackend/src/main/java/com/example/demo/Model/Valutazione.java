@@ -21,22 +21,23 @@ public class Valutazione {
 	private long idValutazione;
 	private String valutazione;
 	private String note;
-	private String hash;
+	private String idTX;
 	
 	public Valutazione() {}
 	
-	public Valutazione(String valutazione, String note, String hash) {
+	public Valutazione(String valutazione, String note, String idTX) {
 		super();
 		this.valutazione = valutazione;
 		this.note = note;
+		this.idTX=idTX;
 	}
 
-	public String getHash() {
-		return hash;
+	public String getIdTX() {
+		return idTX;
 	}
 
-	public void setHash(String hash) {
-		this.hash = hash;
+	public void setIdTX(String idTX) {
+		this.idTX = idTX;
 	}
 
 	public long getIdValutazione() {

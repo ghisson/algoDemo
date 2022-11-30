@@ -17,6 +17,9 @@ import com.example.demo.Util.HashCreator;
 public class ServiceValutazione {
 	
 	@Autowired
+	private ServiceTransaction serviceTransaction;
+	
+	@Autowired
 	private ServiceJWT serviceJWT;
 	
 	@Autowired
@@ -36,7 +39,8 @@ public class ServiceValutazione {
 		valutazioneRepository.save(v);
 		String hashPulito=v.getIdValutazione()+""+valutazioneDTO.getValutazione()+valutazioneDTO.getNote();
 		String hash=HashCreator.createSHAHash(hashPulito);
-		v.setHash(hash);
+		String idTX=serviceTransaction.sendTransaction(hash);
+		v.setIdTX(idTX);
 		String valCript=serviceJWT.create(valutazioneDTO.getValutazione()+"");
 		String noteCript=serviceJWT.create(valutazioneDTO.getNote());
 		v.setValutazione(valCript);

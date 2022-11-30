@@ -29,7 +29,7 @@ public class Utente {
 	
 	public Utente() {}
 	
-	public Utente(long idUtente, String name, String surname, Date birthDate, String codFiscale,String email) {
+	public Utente(long idUtente, String name, String surname, Date birthDate, String codFiscale,String email,String password) {
 		super();
 		this.idUtente=idUtente;
 		this.name=name;

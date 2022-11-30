@@ -118,6 +118,7 @@ public class ServiceTransaction {
 	        System.out.println("Transaction information (with notes): " +
 	        jsonObj.toString(2));
 	        System.out.println("Decoded note: " + new String(pTrx.txn.tx.note));
+	        
 	        return id;
 		}catch(Exception e) {
 			return "";
