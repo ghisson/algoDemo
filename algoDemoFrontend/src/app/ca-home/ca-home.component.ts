@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class CaHomeComponent {
 
-  becomered():void{
-    
+  becomered(num:string):void{
+    const box = document.getElementById(num);
+      box?.classList.add('list-group-item-danger');
   }
 }
