@@ -9,22 +9,23 @@
               
               <img id="profile-img" class="rounded-circle profile-img-card" src="https://s2.coinmarketcap.com/static/img/coins/200x200/4030.png" />
               <p class="text-white-50 mb-5">Please enter your email and password!</p>
+              <span class="badge badge-danger " style="background-color: red;" *ngIf="this.errore">Email e/o Password sbagliati</span>
+              <form [formGroup]="dati" (ngSubmit)="invio()">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingPassword" placeholder="Email"  formControlName="email">
+                    <label for="floatingPassword">Email</label>
+                </div>
 
-              <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingPassword" placeholder="Email">
-                <label for="floatingPassword">Email</label>
-              </div>
-
-              <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
-              </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"  formControlName="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
 
 
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
 
-              <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+              </form>
               
 
             </div>
