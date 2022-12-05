@@ -2,9 +2,11 @@ package com.example.demo.Service;
 
 import com.algorand.algosdk.v2.client.common.AlgodClient;
 import com.example.demo.Util.ClientAlgo;
+import com.example.demo.Util.ClientIndexer;
 import com.example.demo.Util.Wallet;
 
 import java.security.GeneralSecurityException;
+import java.util.Base64;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -64,10 +66,35 @@ public class ServiceTransaction {
 
 	private AlgodClient algod;
 	private Account wallet;
+	private IndexerClient indexer;
 	
 	public ServiceTransaction() throws GeneralSecurityException {
 		algod=ClientAlgo.getClient();
 		wallet=Wallet.getAccount();
+		indexer=ClientIndexer.getClient();
+	}
+	
+	public String getNote(String idtx) throws Exception {
+		Response<TransactionsResponse> response = indexer
+	            .searchForTransactions()
+	            .address(wallet.getAddress())
+	            .txid(idtx)
+	            .execute();        
+
+        if (!response.isSuccessful()) {
+            throw new Exception(response.message());
+        }  
+
+        JSONObject jsonObj = new JSONObject(response.body().toString());
+        if(jsonObj.getJSONArray("transactions").length()<1) {
+        	return null;
+        }
+        String note = jsonObj.getJSONArray("transactions").getJSONObject(0).getString("note");
+        System.out.println(note);
+
+        byte[] decodedBytes = Base64.getDecoder().decode(note);
+        String decodedString = new String(decodedBytes);
+        return decodedString;
 	}
 	
 	

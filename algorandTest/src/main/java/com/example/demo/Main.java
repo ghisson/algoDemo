@@ -379,7 +379,7 @@ public class Main {
         throw new Exception("Transaction not confirmed after " + timeout + " rounds!");
     }
 
-    private static String token = "b1ad6466589942ea3e161b5292b4a2f40825675ac5ac823bdc8f49246c3ca63c";
+    private static String token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
     private static KmdApi kmd = null;
 
     public static void main(String[] args) throws Exception {
@@ -557,14 +557,18 @@ public class Main {
 
         //createNFTAsset(algod,myAccount);
 
-        AlgodClient algod = new AlgodClient("http://127.0.0.1", 8080, token);
+        AlgodClient algod = new AlgodClient("http://127.0.0.1", 4001, token);
+        IndexerClient indexerClient = new IndexerClient("localhost", 8980); 
 
-        String PASSPHRASE = "make sleep scatter stove author rail truth venture like fever reform fitness dry kit practice once team wrap come arm sentence ghost rail abstract figure";
+
+        String PASSPHRASE = "sphere daring end riot ribbon doll wrong scrub example hollow mesh crush alcohol quiz modify puzzle relief park session thing mask wrist silly absorb uniform";
 
         Account myAccount=new Account(PASSPHRASE);
 
 
        System.out.println(myAccount.getAddress());
+       System.out.println(myAccount.toMnemonic());
+       printBalance(algod, myAccount);
 
        //createNFTAsset(algod,myAccount);
     }

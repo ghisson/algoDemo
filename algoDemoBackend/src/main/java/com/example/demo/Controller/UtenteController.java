@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -70,6 +71,27 @@ public class UtenteController {
 	public ResponseEntity<Object> postBody(@RequestBody ValutazioneDTO valutazioneDTO,@PathVariable long idUtente) throws NoSuchAlgorithmException {
 		Valutazione valutazione=serviceValutazione.addValutazione(valutazioneDTO, idUtente);
 		return new ResponseEntity<Object>(valutazione, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/checkValutazione/{idValutazione}")
+	public ResponseEntity<Object> postBody(@PathVariable long idValutazione) throws Exception {
+		//0 valutazione su db non trovata
+		//1 idtx su blockchain non trovata
+		//2 tutto ok
+		//3 check falsato
+		int result=serviceValutazione.checkValutazione(idValutazione);
+		if(result==0) {
+			return new ResponseEntity<Object>("idValutazione non trovata", HttpStatus.NOT_FOUND);
+		}else if(result==1) {
+			return new ResponseEntity<Object>("idtx non trovato in blockchain", HttpStatus.NOT_FOUND);
+		}else if(result==2) {
+			return new ResponseEntity<Object>("ok", HttpStatus.OK);
+		}else if(result==3) {
+			return new ResponseEntity<Object>("dato falsato", HttpStatus.BAD_REQUEST);
+		}
+			
+		return new ResponseEntity<Object>(result, HttpStatus.OK);
 	}
 	 
 }

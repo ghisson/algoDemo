@@ -10,7 +10,7 @@ public class ClientAlgo {
 	
 	public static AlgodClient getClient() {
 		if(algod==null) {
-			algod = new AlgodClient("http://localhost", 4001, token);
+			algod = new AlgodClient("http://127.0.0.1", 4001, token);
 			return algod;
 		}
 		return algod;
