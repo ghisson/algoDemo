@@ -63,7 +63,6 @@ public class ServiceValutazione {
 			return 1;
 		}
 		String hashPulito=valutazione.getIdValutazione()+val+note;
-		System.out.println(hashPulito);
 		String hash=HashCreator.createSHAHash(hashPulito);
 		if(hash.equals(noteHash)){
 			return 2;

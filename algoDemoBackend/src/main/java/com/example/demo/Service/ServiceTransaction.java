@@ -90,7 +90,6 @@ public class ServiceTransaction {
         	return null;
         }
         String note = jsonObj.getJSONArray("transactions").getJSONObject(0).getString("note");
-        System.out.println(note);
 
         byte[] decodedBytes = Base64.getDecoder().decode(note);
         String decodedString = new String(decodedBytes);
