@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,18 @@ public class UtenteController {
 		}
 			
 		return new ResponseEntity<Object>(result, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/getAllValutazioni/{idUtente}")
+	public ResponseEntity<Object> getAllTransactions(@PathVariable long idUtente) throws Exception {
+		
+		List<Valutazione> valutazioni=serviceValutazione.getAllValutazioniByIdUtente(idUtente);
+		if(valutazioni==null) {
+			return new ResponseEntity<Object>(valutazioni, HttpStatus.BAD_REQUEST);
+		}
+			
+		return new ResponseEntity<Object>(valutazioni, HttpStatus.OK);
 	}
 	 
 }

@@ -62,7 +62,7 @@ public class Valutazione {
 	
 	@ManyToOne
     @JoinColumn(name = "fk_id_utente", referencedColumnName = "id_utente")
-    @JsonIgnoreProperties("valutazione")
+    @JsonIgnoreProperties("valutazioni")
 	
 	private Utente utente;
 

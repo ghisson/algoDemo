@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,16 @@ public class ServiceValutazione {
 		}
 		return 3;
 		
+		
+	}
+	
+	public List<Valutazione> getAllValutazioniByIdUtente(long idUtente){
+		Optional<Utente> ut=utenteRepository.findById(idUtente);
+		if(ut.isPresent()) {
+			List<Valutazione> valutazioni=valutazioneRepository.findByUtente(ut.get());
+			return valutazioni;
+		}
+		return null;
 		
 	}
 
