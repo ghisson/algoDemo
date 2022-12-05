@@ -566,7 +566,7 @@ public class Main {
 
        System.out.println(myAccount.getAddress());
 
-       createNFTAsset(algod,myAccount);
+       //createNFTAsset(algod,myAccount);
     }
 
     
