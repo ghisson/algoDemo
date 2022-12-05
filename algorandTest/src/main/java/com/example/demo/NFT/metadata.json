@@ -1,0 +1,26 @@
+{
+    "name": "SIFNFT",
+    "description": "Sif NFT",
+    "image": "https://gateway.pinata.cloud/ipfs/QmPkXhnfNWPHVf6ZXj1JmZrfCovnWFXRExej8c2LwEth2Z",
+    "image_integrity": "sha256-nxrRksRaGe/ugNwJkYVdwxTaK3jbvapwtg0VDshhF6A=",
+    "image_mimetype": "image/png",
+    "properties": {
+        "simple_property": "Sif NFT",
+        "rich_property": {
+            "name": "Sif",
+            "value": "001",
+            "display_value": "001",
+            "class": "emphasis",
+            "css": {
+                "color": "#ffffff",
+                "font-weight": "bold",
+                "text-decoration": "underline"
+            }
+        },
+        "array_property": {
+            "name": "Artwork",
+            "value": [1, 2, 3, 4],
+            "class": "emphasis"
+        }
+    }
+}

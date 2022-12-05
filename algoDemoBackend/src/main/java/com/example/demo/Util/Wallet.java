@@ -6,7 +6,8 @@ import com.algorand.algosdk.account.Account;
 
 public class Wallet {
 	
-	private static final String mnemonic="spice wash upon maple state income neglect normal face struggle virus arrest flush throw amateur balcony more possible double actual erode health consider absorb page";
+	//private static final String mnemonic="spice wash upon maple state income neglect normal face struggle virus arrest flush throw amateur balcony more possible double actual erode health consider absorb page";
+	private static final String mnemonic="brand receive harbor again duty pattern raw grape hill kitchen nominee hidden measure grid apple beyond orange appear media volume olive forum clerk absorb fiction";
 	private static Account wallet;
 	
 	
