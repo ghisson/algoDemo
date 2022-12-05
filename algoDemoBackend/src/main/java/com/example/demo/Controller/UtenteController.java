@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -70,6 +71,13 @@ public class UtenteController {
 	public ResponseEntity<Object> postBody(@RequestBody ValutazioneDTO valutazioneDTO,@PathVariable long idUtente) throws NoSuchAlgorithmException {
 		Valutazione valutazione=serviceValutazione.addValutazione(valutazioneDTO, idUtente);
 		return new ResponseEntity<Object>(valutazione, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/checkValutazione/{idValutazione}")
+	public ResponseEntity<Object> postBody(@PathVariable long idValutazione) throws Exception {
+		boolean result=serviceValutazione.checkValutazione(idValutazione);
+		return new ResponseEntity<Object>(result, HttpStatus.OK);
 	}
 	 
 }

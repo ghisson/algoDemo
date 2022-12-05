@@ -48,5 +48,26 @@ public class ServiceValutazione {
 		valutazioneRepository.save(v);
 		return v;
 	}
+	
+	public boolean checkValutazione(long idValutazione) throws Exception {
+		
+		Optional<Valutazione> v=valutazioneRepository.findById(idValutazione);
+		if(!v.isPresent()) {
+			return false;
+		}
+		Valutazione valutazione=v.get();
+		String val=serviceJWT.verify(valutazione.getValutazione());
+		String note=serviceJWT.verify(valutazione.getNote());
+		String noteHash=serviceTransaction.getNote(valutazione.getIdTX());
+		String hashPulito=valutazione.getIdValutazione()+val+note;
+		System.out.println(hashPulito);
+		String hash=HashCreator.createSHAHash(hashPulito);
+		if(hash.equals(noteHash)){
+			return true;
+		}
+		return false;
+		
+		
+	}
 
 }
