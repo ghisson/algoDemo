@@ -15,6 +15,8 @@ import com.example.demo.Repository.UtenteRepository;
 import com.example.demo.Repository.ValutazioneRepository;
 import com.example.demo.Util.HashCreator;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ServiceValutazione {
 	
@@ -30,6 +32,8 @@ public class ServiceValutazione {
 	@Autowired
 	private ValutazioneRepository valutazioneRepository;
 	
+	
+	 
 	public Valutazione addValutazione(ValutazioneDTO valutazioneDTO,long idUtente) throws NoSuchAlgorithmException {
 		Valutazione v=new Valutazione();
 		Optional<Utente> utente=utenteRepository.findById(idUtente);
@@ -42,6 +46,10 @@ public class ServiceValutazione {
 		String hashPulito=v.getIdValutazione()+""+valutazioneDTO.getValutazione()+valutazioneDTO.getNote();
 		String hash=HashCreator.createSHAHash(hashPulito);
 		String idTX=serviceTransaction.sendTransaction(hash);
+		if(idTX.equals("")) {
+			valutazioneRepository.delete(v);
+			return null;
+		}
 		v.setIdTX(idTX);
 		String valCript=serviceJWT.create(valutazioneDTO.getValutazione()+"");
 		String noteCript=serviceJWT.create(valutazioneDTO.getNote());

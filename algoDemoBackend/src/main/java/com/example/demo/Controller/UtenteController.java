@@ -71,6 +71,9 @@ public class UtenteController {
 	@PostMapping("/createValutazione/{idUtente}")
 	public ResponseEntity<Object> postBody(@RequestBody ValutazioneDTO valutazioneDTO,@PathVariable long idUtente) throws NoSuchAlgorithmException {
 		Valutazione valutazione=serviceValutazione.addValutazione(valutazioneDTO, idUtente);
+		if(valutazione==null) {
+			return new ResponseEntity<Object>("Error", HttpStatus.BAD_REQUEST);
+		}
 		return new ResponseEntity<Object>(valutazione, HttpStatus.OK);
 	}
 	
