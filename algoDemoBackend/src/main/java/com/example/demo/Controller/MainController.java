@@ -54,6 +54,7 @@ public class MainController {
 		System.out.println("idTX: "+idTransaction);
 		return new ResponseEntity<Object>(idTransaction, HttpStatus.OK);
 	}
+	//commento aggiungo ora
 	
 	@CrossOrigin(origins="*")
 	@GetMapping("/cripta/{note}")
