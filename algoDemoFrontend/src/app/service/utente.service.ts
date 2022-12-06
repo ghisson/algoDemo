@@ -32,26 +32,26 @@ export class UtenteService {
 
   setLoggato(){
     sessionStorage.setItem("login", "true");
-}
+  }
 
-setId(id:number){
-    sessionStorage.setItem("id", id+"");
-}
+  setId(id:number){
+      sessionStorage.setItem("id", id+"");
+  }
 
-getId(){
-    return sessionStorage.getItem("id");
-}
+  getId(){
+      return sessionStorage.getItem("id");
+  }
 
-setLogout(){
-    sessionStorage.setItem("login", "false");
-    sessionStorage.setItem("id", "0");
-}
+  setLogout(){
+      sessionStorage.setItem("login", "false");
+      sessionStorage.setItem("id", "0");
+  }
 
-getLoggato():boolean{
-    if(sessionStorage.getItem("login")=="true"){
-        return true;
-    }
-    return false;
-}
+  getLoggato():boolean{
+      if(sessionStorage.getItem("login")=="true"){
+          return true;
+      }
+      return false;
+  }
 
 }

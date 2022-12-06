@@ -129,6 +129,7 @@ public class ServiceTransaction {
 	        Response<PostTransactionsResponse> rawtxresponse =
 	        algod.RawTransaction().rawtxn(encodedTxBytes).execute();
 	        if (!rawtxresponse.isSuccessful()) {
+	        	System.out.println("crasho"+rawtxresponse.message());
 	        	throw new Exception(rawtxresponse.message());
 	        }
 	        String id = rawtxresponse.body().txId;
