@@ -1,7 +1,18 @@
 <p>ca-home works!</p>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center container" style="font-size:13px">
     <ul class="list-group" >
-        <li *ngFor="let val of this.valutazioni; index as i;" class="list-group-item row" id={{i}}><span class="me-5 col-4">{{val.getIdTX()}}</span><span class="me-5 col-1">{{val.getValutazione()}}</span><span class="me-5 col-6">{{val.getNote()}}</span><button (click)="becomered(i+'')" class="btn btn-info col-1">check</button></li>
+        <li class="list-group-item row d-flex" >
+            <div class="col-6" ><p class="me-5">IdTX</p></div>
+            <div class="col-1"><p class="me-5">Valutazione</p></div>
+            <div class="col-4"><p class="me-5">Note</p></div>
+            <div class="col-1"><p>Check</p></div>
+        </li>
+        <li *ngFor="let val of this.valutazioni; index as i;" class="list-group-item row d-flex" id={{i}}>
+            <div class="col-6" ><p class="me-5">{{val.getIdTX()}}</p></div>
+            <div class="col-1"><p class="me-5">{{val.getValutazione()}}</p></div>
+            <div class="col-4"><p class="me-5">{{val.getNote()}}</p></div>
+            <div class="col-1"><button (click)="becomered(i+'')" class="btn btn-info">check</button></div>
+        </li>
     </ul>
 </div>
