@@ -20,7 +20,7 @@ export class UtenteService {
       'Content-Type':  'application/json',
       "Access-Control-Allow-Origin": "*",
     } ), 
-};
+  };
 
   constructor(private http: HttpClient) { }
 
