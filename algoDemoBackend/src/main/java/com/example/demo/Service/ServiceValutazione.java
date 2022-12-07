@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.example.demo.DTO.ValutazioneDTO;
 import com.example.demo.Model.Utente;
 import com.example.demo.Model.Valutazione;
@@ -66,8 +67,14 @@ public class ServiceValutazione {
 			return 0;
 		}
 		Valutazione valutazione=v.get();
-		String val=serviceJWT.verify(valutazione.getValutazione());
-		String note=serviceJWT.verify(valutazione.getNote());
+		String val="";
+		String note="";
+		try {
+			val=serviceJWT.verify(valutazione.getValutazione());
+			note=serviceJWT.verify(valutazione.getNote());
+		}catch(SignatureVerificationException exception) {
+			return 3;
+		}
 		String noteHash=serviceTransaction.getNote(valutazione.getIdTX());
 		if(noteHash==null) {
 			return 1;
@@ -90,10 +97,16 @@ public class ServiceValutazione {
 			String note;
 			String valutazione;
 			for(Valutazione val:valutazioni) {
+				try {
 				note=serviceJWT.verify(val.getNote());
 				valutazione=serviceJWT.verify(val.getValutazione());
 				val.setNote(note);
 				val.setValutazione(valutazione);
+				}catch(SignatureVerificationException exception) {
+					val.setNote("Dati compromessi");
+					val.setValutazione("Dati compromessi");
+				}
+				
 			}
 			return valutazioni;
 		}
