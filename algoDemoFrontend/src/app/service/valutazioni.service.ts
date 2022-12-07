@@ -29,4 +29,8 @@ export class ValutazioniService {
     return this.http.get<any>(baseUrl+'/checkValutazione/'+idValutazione);
   }
 
+  addValutazione(valutazione:any,idUtente:any){
+    return this.http.post<any>(baseUrl+'/createValutazione/'+idUtente, valutazione,this.httpOptions);
+  }
+
 }

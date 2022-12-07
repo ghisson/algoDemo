@@ -64,6 +64,18 @@ export class CaHomeComponent {
     );
   }
 
+  invio(){
+    this.valutazioniService.addValutazione(this.dati.value,this.idUtente).subscribe(
+      (response:any) => {
+        console.log(response)
+
+      },
+      (error:any) => {
+        console.log(error)
+      }
+    );
+  }
+
 
 
 

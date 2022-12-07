@@ -31,18 +31,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="this.dati.reset()"></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="dati">
+          <form [formGroup]="dati" (ngSubmit)="invio()">
             <input type="text" class="form-control mb-2" formControlName="note" placeholder="note relative alla valutazione"/>
             <input type="text" class="form-control" formControlName="valutazione" placeholder="voto relativo alla valutazione"/>
-            
+            <input type="submit" class="btn btn-primary mt-2" value="Aggiungi" [disabled]="dati.invalid"/>
           </form>
         </div>
-        <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input class="button-12 col-2" type="submit" value="Prenota" [disabled]="dati.invalid" />
-        -->
-          <input type="submit" class="btn btn-primary" value="Aggiungi" [disabled]="dati.invalid"/>
-        </div>
+       
       </div>
     </div>
   </div>
