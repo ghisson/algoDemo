@@ -15,9 +15,11 @@ export class CaNavbarComponent {
   constructor(private utenteService:UtenteService, private router: Router){
     this.utenteService.isUserLoggedIn.subscribe( value => {
       this.loggato=value;
+      console.log(this.loggato);
     });
     this.loggato = utenteService.getLoggato()
     this.nomeUtente=utenteService.getNome();
+    console.log(this.loggato);
     
 
     

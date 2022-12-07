@@ -53,6 +53,7 @@ export class UtenteService {
       sessionStorage.setItem("nome", "");
       sessionStorage.setItem("login", "false");
       sessionStorage.setItem("id", "0");
+      this.isUserLoggedIn.next(false);
   }
 
   getLoggato():boolean{
