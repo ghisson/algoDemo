@@ -25,6 +25,7 @@ public class Utente {
 	@Column(name="cod_fiscale")
 	private String codFiscale;
 	private String email;
+	@Column(length = 999)
 	private String password;
 	
 	public Utente() {}

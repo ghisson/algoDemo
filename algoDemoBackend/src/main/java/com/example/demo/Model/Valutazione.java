@@ -19,7 +19,9 @@ public class Valutazione {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_valutazione")
 	private long idValutazione;
+	@Column(length = 999)
 	private String valutazione;
+	@Column(length = 999)
 	private String note;
 	private String idTX;
 	
