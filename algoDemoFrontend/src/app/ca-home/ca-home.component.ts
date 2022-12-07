@@ -1,5 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Valutazione } from '../model/valutazione';
 import { UtenteService } from '../service/utente.service';
@@ -12,14 +13,21 @@ import { ValutazioniService } from '../service/valutazioni.service';
 })
 export class CaHomeComponent {
   idUtente:any;
+  dati: FormGroup;
  
   valutazioni:Valutazione[];
 
 
-  constructor(private router: Router,private utenteService: UtenteService, private valutazioniService:ValutazioniService) {
+  constructor(private router: Router,private utenteService: UtenteService, private fb: FormBuilder, private valutazioniService:ValutazioniService) {
     this.idUtente = this.utenteService.getId();
     this.valutazioni=[];
     console.log(this.idUtente);
+
+    this.dati = this.fb.group({
+      note: ['', [Validators.required]],
+      valutazione: ['', [Validators.required,Validators.pattern("^[0-5]*$"), Validators.maxLength(1)]]
+    });
+
     if(this.idUtente==0 || this.idUtente==null){
       this.router.navigate(['/login']);
     }
