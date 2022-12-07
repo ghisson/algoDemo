@@ -22,6 +22,7 @@ export class CaHomeComponent {
     this.idUtente = this.utenteService.getId();
     this.valutazioni=[];
     console.log(this.idUtente);
+    
 
     this.dati = this.fb.group({
       note: ['', [Validators.required]],
@@ -68,6 +69,8 @@ export class CaHomeComponent {
     this.valutazioniService.addValutazione(this.dati.value,this.idUtente).subscribe(
       (response:any) => {
         console.log(response)
+        const x = document.getElementById("closeModal");
+        x?.click();
 
       },
       (error:any) => {
