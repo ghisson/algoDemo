@@ -39,10 +39,23 @@ export class CaHomeComponent {
     );
   }
 
-  becomered(num:string):void{
-    console.log(num);
-    const box = document.getElementById(num);
-      box?.classList.add('list-group-item-danger');
+  checkMutability(num:string,idTX:any):void{
+    // console.log(num);
+    // const box = document.getElementById(num);
+    //   box?.classList.add('list-group-item-danger');
+    this.valutazioniService.checkValutazione(idTX).subscribe(
+      (response:any) => {
+        console.log("ok")
+        const box = document.getElementById(num);
+        box?.classList.add('list-group-item-success');
+
+      },
+      (error:any) => {
+        console.log(error)
+        const box = document.getElementById(num);
+        box?.classList.add('list-group-item-danger');
+      }
+    );
   }
 
 

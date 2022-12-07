@@ -25,5 +25,8 @@ export class ValutazioniService {
   }
 
 
+  checkValutazione(idValutazione:any):Observable<any> {   
+    return this.http.get<any>(baseUrl+'/checkValutazione/'+idValutazione);
+  }
 
 }

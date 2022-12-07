@@ -86,16 +86,16 @@ public class UtenteController {
 		//3 check falsato
 		int result=serviceValutazione.checkValutazione(idValutazione);
 		if(result==0) {
-			return new ResponseEntity<Object>("idValutazione non trovata", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Object>(result, HttpStatus.NOT_FOUND);
 		}else if(result==1) {
-			return new ResponseEntity<Object>("idtx non trovato in blockchain", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Object>(result, HttpStatus.NOT_FOUND);
 		}else if(result==2) {
-			return new ResponseEntity<Object>("ok", HttpStatus.OK);
+			return new ResponseEntity<Object>(result, HttpStatus.OK);
 		}else if(result==3) {
-			return new ResponseEntity<Object>("dato falsato", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Object>(result, HttpStatus.BAD_REQUEST);
 		}
 			
-		return new ResponseEntity<Object>(result, HttpStatus.OK);
+		return new ResponseEntity<Object>(result, HttpStatus.BAD_REQUEST);
 	}
 	
 	

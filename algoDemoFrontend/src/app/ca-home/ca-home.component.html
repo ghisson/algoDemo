@@ -12,7 +12,7 @@ ca-home works
             <div class="col-5 d-flex justify-content-center align-items-center">{{val.getIdTX()}}</div>
             <div class="col-2 d-flex justify-content-center align-items-center">{{val.getValutazione()}}</div>
             <div class="col-4 d-flex justify-content-center align-items-center">{{val.getNote()}}</div>
-            <div class="col-1 d-flex justify-content-center align-items-center"><button (click)="becomered(i+'')" class="btn btn-info">check</button></div>
+            <div class="col-1 d-flex justify-content-center align-items-center"><button (click)="checkMutability(i+'',val.getIdValutazione())" class="btn btn-info">check</button></div>
         </li>
     </ul>
 </div>
