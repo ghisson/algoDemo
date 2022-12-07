@@ -45,13 +45,11 @@ export class CaHomeComponent {
     //   box?.classList.add('list-group-item-danger');
     this.valutazioniService.checkValutazione(idTX).subscribe(
       (response:any) => {
-        console.log("ok")
         const box = document.getElementById(num);
         box?.classList.add('list-group-item-success');
 
       },
       (error:any) => {
-        console.log(error)
         const box = document.getElementById(num);
         box?.classList.add('list-group-item-danger');
       }
