@@ -24,7 +24,6 @@ export class CaLoginComponent {
 
     this.errore = false;
     this.idUtente = this.utenteService.getId();
-    console.log(this.idUtente)
     if(this.idUtente!=null && this.idUtente!=0){
       this.router.navigate(['/home']);
     }
@@ -35,7 +34,6 @@ export class CaLoginComponent {
 
     this.utenteService.login(this.dati.get("email")?.value, this.dati.get("password")?.value).subscribe(
       (response: any) => {
-        console.log(response)
         this.utenteService.setId(response.idUtente);
         this.utenteService.setLoggato();
         this.utenteService.setNome(response.name);
