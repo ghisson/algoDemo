@@ -16,6 +16,7 @@ export class CaHomeComponent {
   dati: FormGroup;
   loading:boolean;
   error:boolean;
+  nomeUtente:any;
  
   valutazioni:Valutazione[];
 
@@ -25,6 +26,7 @@ export class CaHomeComponent {
     this.valutazioni=[];
     this.error=false;
     this.loading=false;
+    this.nomeUtente=utenteService.getNome();
     console.log(this.idUtente);
     
 

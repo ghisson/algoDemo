@@ -29,6 +29,13 @@ export class UtenteService {
     return this.http.post<any>(baseUrl+'/login', {"email":email,"password":password},this.httpOptions);
   }
 
+  setNome(nome:string):void{
+    sessionStorage.setItem("nome", nome);
+  }
+  getNome(){
+    return sessionStorage.getItem("nome");
+  }
+
 
   setLoggato(){
     sessionStorage.setItem("login", "true");

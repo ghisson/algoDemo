@@ -38,6 +38,7 @@ export class CaLoginComponent {
         console.log(response)
         this.utenteService.setId(response.idUtente);
         this.utenteService.setLoggato();
+        this.utenteService.setNome(response.name);
         this.utenteService.isUserLoggedIn.next(true);
         this.router.navigate(['/home']);
         this.errore = false;

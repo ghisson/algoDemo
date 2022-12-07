@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { CaLoginComponent } from './ca-login/ca-login.component';
 import { UtenteService } from './service/utente.service';
 import { CaHomeComponent } from './ca-home/ca-home.component';
+import { CaNavbarComponent } from './ca-navbar/ca-navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CaLoginComponent,
-    CaHomeComponent
+    CaHomeComponent,
+    CaNavbarComponent
   ],
   imports: [
     BrowserModule,
