@@ -9,6 +9,7 @@ import { UtenteService } from '../service/utente.service';
 export class CaNavbarComponent {
 
   loggato:any
+  nomeUtente:any
 
   constructor(private utenteService:UtenteService){
     this.utenteService.isUserLoggedIn.subscribe( value => {
@@ -16,6 +17,7 @@ export class CaNavbarComponent {
       console.log(this.loggato)
     });
     this.loggato = utenteService.getLoggato()
+    this.nomeUtente=utenteService.getNome();
     
 
     
