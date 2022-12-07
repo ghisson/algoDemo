@@ -1,18 +1,18 @@
-<p>ca-home works!</p>
+ca-home works
 
-<div class="d-flex justify-content-center container" style="font-size:13px">
+<div class="container" style="font-size:13px">
     <ul class="list-group" >
-        <li class="list-group-item row d-flex" >
-            <div class="col-6" ><p class="me-5">IdTX</p></div>
-            <div class="col-1"><p class="me-5">Valutazione</p></div>
-            <div class="col-4"><p class="me-5">Note</p></div>
-            <div class="col-1"><p>Check</p></div>
+        <li class="list-group-item row d-flex justify-content-end" >
+            <div class="col-5 mt-2 fw-bold" ><p class="text-center">IdTX</p></div>
+            <div class="col-2 mt-2 fw-bold"><p class="text-center">Valutazione</p></div>
+            <div class="col-4 mt-2 fw-bold"><p class="text-center">Note</p></div>
+            <div class="col-1 mt-2 fw-bold"><p class="text-center">Check</p></div>
         </li>
         <li *ngFor="let val of this.valutazioni; index as i;" class="list-group-item row d-flex" id={{i}}>
-            <div class="col-6" ><p class="me-5">{{val.getIdTX()}}</p></div>
-            <div class="col-1"><p class="me-5">{{val.getValutazione()}}</p></div>
-            <div class="col-4"><p class="me-5">{{val.getNote()}}</p></div>
-            <div class="col-1"><button (click)="becomered(i+'')" class="btn btn-info">check</button></div>
+            <div class="col-5 d-flex justify-content-center align-items-center">{{val.getIdTX()}}</div>
+            <div class="col-2 d-flex justify-content-center align-items-center">{{val.getValutazione()}}</div>
+            <div class="col-4 d-flex justify-content-center align-items-center">{{val.getNote()}}</div>
+            <div class="col-1 d-flex justify-content-center align-items-center"><button (click)="becomered(i+'')" class="btn btn-info">check</button></div>
         </li>
     </ul>
 </div>
