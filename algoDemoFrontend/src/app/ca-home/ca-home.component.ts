@@ -15,6 +15,7 @@ export class CaHomeComponent {
   idUtente:any;
   dati: FormGroup;
   loading:boolean;
+  error:boolean;
  
   valutazioni:Valutazione[];
 
@@ -22,6 +23,7 @@ export class CaHomeComponent {
   constructor(private router: Router,private utenteService: UtenteService, private fb: FormBuilder, private valutazioniService:ValutazioniService) {
     this.idUtente = this.utenteService.getId();
     this.valutazioni=[];
+    this.error=false;
     this.loading=false;
     console.log(this.idUtente);
     
@@ -60,14 +62,17 @@ export class CaHomeComponent {
     this.valutazioniService.addValutazione(this.dati.value,this.idUtente).subscribe(
       async (response:any) => {
         console.log(response)
+        this.error=false;
         this.loadDati()
         this.loading=false;
         await this.delay(1);
         const x = document.getElementById("closeModal");
         x?.click();
       },
-      (error:any) => {
+      async (error:any) => {
         console.log(error)
+        this.loading=false;
+        this.error=true;
       }
     );
   }
