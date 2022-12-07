@@ -1,0 +1,57 @@
+<section class="gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark " style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <img id="profile-img" class="rounded-circle profile-img-card"
+                src="https://s2.coinmarketcap.com/static/img/coins/200x200/4030.png" />
+              <p class="text-white-50 mb-5">Please enter your personal data</p>
+              <span class="badge badge-danger mb-4" style="background-color: red;" *ngIf="this.errore">Registrazione utente non avvenuta</span>
+              <form [formGroup]="dati" (ngSubmit)="invio()">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingNome" placeholder="Nome" formControlName="name">
+                  <label for="floatingNome">Nome</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingCognome" placeholder="Cognome"
+                    formControlName="surname">
+                  <label for="floatingCognome">Cognome</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="floatingEmail" placeholder="Email"
+                    formControlName="email">
+                  <label for="floatingEmail">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                    formControlName="password">
+                  <label for="floatingPassword">Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="date" class="form-control" id="floatingDate" placeholder="Date"
+                    formControlName="birthDate">
+                  <label for="floatingDate">Data di nascita</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control" id="floatingCodiceFiscale" placeholder="Codice Fiscale"
+                    formControlName="codFiscale">
+                  <label for="floatingCodiceFiscale">Codice Fiscale</label>
+                </div>
+
+                <button class="btn btn-outline-light btn-lg px-5 mt-3" type="submit"  [disabled]="dati.invalid">Sign Up</button>
+              </form>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

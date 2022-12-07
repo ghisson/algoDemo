@@ -10,13 +10,15 @@ import { CaLoginComponent } from './ca-login/ca-login.component';
 import { UtenteService } from './service/utente.service';
 import { CaHomeComponent } from './ca-home/ca-home.component';
 import { CaNavbarComponent } from './ca-navbar/ca-navbar.component';
+import { CaRegistrazioneComponent } from './ca-registrazione/ca-registrazione.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CaLoginComponent,
     CaHomeComponent,
-    CaNavbarComponent
+    CaNavbarComponent,
+    CaRegistrazioneComponent
   ],
   imports: [
     BrowserModule,

@@ -14,8 +14,8 @@ export class CaNavbarComponent {
 
   constructor(private utenteService:UtenteService, private router: Router){
     this.utenteService.isUserLoggedIn.subscribe( value => {
+      this.nomeUtente=utenteService.getNome();
       this.loggato=value;
-      console.log(this.loggato);
     });
     this.loggato = utenteService.getLoggato()
     this.nomeUtente=utenteService.getNome();
@@ -34,5 +34,11 @@ export class CaNavbarComponent {
   login() {
     this.router.navigate(['/login']);
   }
+
+  signup() {
+    this.router.navigate(['/signup']);
+  }
+
+  
 
 }

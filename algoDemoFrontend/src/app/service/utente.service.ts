@@ -63,4 +63,8 @@ export class UtenteService {
       return false;
   }
 
+  signUp(dati:any){
+    return this.http.post<any>(baseUrl+'/addUtente', dati,this.httpOptions);
+  }
+
 }
