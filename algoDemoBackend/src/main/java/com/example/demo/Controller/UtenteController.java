@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,7 +107,7 @@ public class UtenteController {
 		if(valutazioni==null) {
 			return new ResponseEntity<Object>(valutazioni, HttpStatus.BAD_REQUEST);
 		}
-			
+		Collections.reverse(valutazioni);
 		return new ResponseEntity<Object>(valutazioni, HttpStatus.OK);
 	}
 	 
