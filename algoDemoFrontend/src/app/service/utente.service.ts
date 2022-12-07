@@ -50,6 +50,7 @@ export class UtenteService {
   }
 
   setLogout(){
+      sessionStorage.setItem("nome", "");
       sessionStorage.setItem("login", "false");
       sessionStorage.setItem("id", "0");
   }

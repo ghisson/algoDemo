@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UtenteService } from '../service/utente.service';
 
 @Component({
@@ -11,16 +12,25 @@ export class CaNavbarComponent {
   loggato:any
   nomeUtente:any
 
-  constructor(private utenteService:UtenteService){
+  constructor(private utenteService:UtenteService, private router: Router){
     this.utenteService.isUserLoggedIn.subscribe( value => {
-      this.loggato=value+"";
-      console.log(this.loggato)
+      this.loggato=value;
     });
     this.loggato = utenteService.getLoggato()
     this.nomeUtente=utenteService.getNome();
     
 
     
+  }
+
+  logout(){
+    this.utenteService.setLogout();
+    this.router.navigate(['/login']);
+    this.nomeUtente="";
+  }
+
+  login() {
+    this.router.navigate(['/login']);
   }
 
 }
