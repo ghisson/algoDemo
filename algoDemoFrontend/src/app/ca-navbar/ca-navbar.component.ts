@@ -28,7 +28,7 @@ export class CaNavbarComponent {
   logout(){
     this.utenteService.setLogout();
     this.router.navigate(['/login']);
-    this.nomeUtente="";
+    console.log(this.nomeUtente);
   }
 
   login() {

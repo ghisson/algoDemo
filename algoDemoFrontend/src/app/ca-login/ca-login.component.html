@@ -12,7 +12,7 @@
               <span class="badge badge-danger " style="background-color: red;" *ngIf="this.errore">Email e/o Password sbagliati</span>
               <form [formGroup]="dati" (ngSubmit)="invio()">
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingPassword" placeholder="Email"  formControlName="email">
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="Email"  formControlName="email">
                     <label for="floatingPassword">Email</label>
                 </div>
 
