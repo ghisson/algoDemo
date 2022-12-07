@@ -14,6 +14,7 @@ import { ValutazioniService } from '../service/valutazioni.service';
 export class CaHomeComponent {
   idUtente:any;
   dati: FormGroup;
+  loading:boolean;
  
   valutazioni:Valutazione[];
 
@@ -21,6 +22,7 @@ export class CaHomeComponent {
   constructor(private router: Router,private utenteService: UtenteService, private fb: FormBuilder, private valutazioniService:ValutazioniService) {
     this.idUtente = this.utenteService.getId();
     this.valutazioni=[];
+    this.loading=false;
     console.log(this.idUtente);
     
 
@@ -33,19 +35,7 @@ export class CaHomeComponent {
       this.router.navigate(['/login']);
     }
 
-    this.valutazioniService.getAllValutazioneByIdUtente(this.idUtente).subscribe(
-      (response:any) => {
-        console.log(response);
-        for(let i=0;i<response.length;i++){
-          this.valutazioni.push(new Valutazione(response[i]));
-        }
-        console.log(this.valutazioni);
-
-      },
-      (error:any) => {
-
-      }
-    );
+    this.loadDati()
   }
 
   checkMutability(num:string,idTX:any):void{
@@ -66,12 +56,15 @@ export class CaHomeComponent {
   }
 
   invio(){
+    this.loading=true;
     this.valutazioniService.addValutazione(this.dati.value,this.idUtente).subscribe(
-      (response:any) => {
+      async (response:any) => {
         console.log(response)
+        this.loadDati()
+        this.loading=false;
+        await this.delay(1);
         const x = document.getElementById("closeModal");
         x?.click();
-
       },
       (error:any) => {
         console.log(error)
@@ -79,6 +72,29 @@ export class CaHomeComponent {
     );
   }
 
+
+  loadDati(){
+    this.valutazioni=[];
+    this.valutazioniService.getAllValutazioneByIdUtente(this.idUtente).subscribe(
+      (response:any) => {
+        console.log(response);
+        for(let i=0;i<response.length;i++){
+          this.valutazioni.push(new Valutazione(response[i]));
+        }
+        console.log(this.valutazioni);
+
+      },
+      (error:any) => {
+
+      }
+    );
+  }
+
+
+  delay(ms: number) {
+    console.log("dormo")
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
 
 

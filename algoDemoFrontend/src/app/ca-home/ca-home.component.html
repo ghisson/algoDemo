@@ -29,9 +29,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Compilare i campi sottostanti</h5>
-          <button id="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="this.dati.reset()"></button>
+          <button id="closeModal" *ngIf="this.loading==false" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="this.dati.reset()"></button>
         </div>
-        <div *ngIf="this.x==true"  class="modal-body">
+        <div *ngIf="this.loading==false"  class="modal-body">
         
           <form [formGroup]="dati" (ngSubmit)="invio()">
             <input type="text" class="form-control mb-2" formControlName="note" placeholder="note relative alla valutazione"/>
@@ -40,7 +40,7 @@
             <input type="submit" class="btn btn-primary mt-2" value="Aggiungi" [disabled]="dati.invalid"/>
           </form>
         </div>
-        <div *ngIf="this.x==false"  class="modal-body">    
+        <div *ngIf="this.loading==true"  class="modal-body">    
             <div class="loader"></div>
         </div>
         
