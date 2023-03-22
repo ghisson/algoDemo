@@ -10,7 +10,7 @@ public class ClientIndexer {
 	
 	public static IndexerClient getClient() {
 		if(indexerClient==null) {
-			indexerClient = new IndexerClient("localhost", 8980); 
+			indexerClient = new IndexerClient("10.10.62.94", 8980); 
 			return indexerClient;
 		}
 		return indexerClient;

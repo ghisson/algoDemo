@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  frontend:
+    build: ./algoDemoFrontend
+    ports:
+      - "4200:4200"
+  backend:
+    build: ./algoDemoBackend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/mydb?useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 2000
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0.26
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 2000
+      MYSQL_DATABASE: algoDemo
